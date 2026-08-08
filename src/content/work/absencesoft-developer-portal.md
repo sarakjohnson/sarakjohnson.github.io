@@ -1,7 +1,7 @@
 ---
 title: Making a five-year-old API sellable
 company: AbsenceSoft
-role: Technical Product Manager
+role: Senior Technical Product Manager
 period: 2025—present
 teamSize: 3—8 developers, 1—2 QA
 oneLiner: >-
@@ -13,18 +13,15 @@ featured: true
 draft: false
 stack: [OpenAPI 3, Stoplight, Swagger, REST, YAML]
 metrics:
-  - value: '340'
-    label: Endpoints documented
-    note: Request and response payloads, translated from loose Swagger to strict OpenAPI
-  - value: '8'
-    label: Active API customers at the start
-    note: After five years of continuous API development
   - value: '~2×'
     label: New API ARR run rate
     note: H1 2026 nearly matched all of 2025 — the same revenue in half the time
   - value: 20 → 5
     label: Target professional-services hours per integration
     note: By end of Q1 2027 — in flight, not yet achieved
+  - value: '340'
+    label: Endpoints documented
+    note: Request and response payloads, translated from loose Swagger to strict OpenAPI
 ---
 
 ## Context
