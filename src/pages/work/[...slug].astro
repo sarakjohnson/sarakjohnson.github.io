@@ -1,0 +1,236 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('work', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const d = entry.data;
+
+// The rail TOC mirrors the CSS section counter, so both start at 01.
+const sections = headings.filter((h) => h.depth === 2);
+
+const spec = [
+  { label: 'Company', value: d.company },
+  { label: 'Role', value: d.role },
+  { label: 'Period', value: d.period },
+  { label: 'Team', value: d.teamSize },
+];
+---
+
+<Base title={`${d.title} — ${d.company}`} description={d.oneLiner}>
+  <nav class="toc" slot="rail-extra" aria-labelledby="toc-heading">
+    <p id="toc-heading" class="meta toc-title">Contents</p>
+    <ol>
+      {
+        sections.map((h, i) => (
+          <li>
+            <a href={`#${h.slug}`}>
+              <span class="toc-num">{String(i + 1).padStart(2, '0')}</span>
+              <span>{h.text}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </nav>
+
+  <article>
+    <header class="head">
+      <p class="meta"><a href="/work/" class="back">← Work</a></p>
+      <h1>{d.title}</h1>
+      <p class="lede">{d.oneLiner}</p>
+    </header>
+
+    <dl class="spec">
+      {
+        spec.map((row) => (
+          <div class="spec-row">
+            <dt class="meta">{row.label}</dt>
+            <dd>{row.value}</dd>
+          </div>
+        ))
+      }
+      <div class="spec-row">
+        <dt class="meta">Stack</dt>
+        <dd class="stack">
+          {d.stack.map((s) => <span class="chip">{s}</span>)}
+        </dd>
+      </div>
+    </dl>
+
+    <section class="metrics" aria-label="Outcomes">
+      {
+        d.metrics.map((m) => (
+          <div class="metric">
+            <span class="metric-value">{m.value}</span>
+            <span class="meta metric-label">{m.label}</span>
+            {m.note && <span class="metric-note">{m.note}</span>}
+          </div>
+        ))
+      }
+    </section>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .head {
+    max-width: var(--measure);
+  }
+
+  .back {
+    text-decoration: none;
+    color: var(--text-muted);
+  }
+
+  .back:hover {
+    color: var(--accent);
+  }
+
+  .head h1 {
+    margin: 1.25rem 0 1rem;
+  }
+
+  /* Mono spec grid — the dossier header. Scans in about five seconds. */
+  .spec {
+    margin: var(--section-gap) 0 0;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .spec-row {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  .spec dt {
+    margin: 0;
+  }
+
+  .spec dd {
+    margin: 0;
+    font-size: var(--size-small);
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: var(--size-meta);
+    color: var(--text-secondary);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.1rem 0.4rem;
+  }
+
+  /* Metrics as a spec strip, never as colored stat tiles. */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 1.5rem 2rem;
+    margin: 2rem 0 0;
+  }
+
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .metric-value {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--accent);
+    font-feature-settings: 'tnum';
+  }
+
+  .metric-label {
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: var(--text-secondary);
+  }
+
+  .metric-note {
+    font-size: var(--size-meta);
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* The first-child reset in global.css zeroes the leading h2's top margin,
+     so the wrapper supplies the gap instead. */
+  .prose {
+    margin-top: var(--section-gap);
+  }
+
+  /* ---- Rail TOC ---- */
+  .toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .toc li {
+    margin: 0;
+  }
+
+  .toc-title {
+    margin: 0 0 0.75rem;
+  }
+
+  .toc a {
+    display: grid;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    gap: 0.5rem;
+    font-size: var(--size-small);
+    line-height: 1.35;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 120ms ease;
+  }
+
+  .toc a:hover {
+    color: var(--text);
+  }
+
+  .toc-num {
+    font-family: var(--font-mono);
+    font-size: var(--size-meta);
+    color: var(--text-muted);
+  }
+
+  /* The rail turns into a top bar on narrow screens; a long TOC there is noise. */
+  @media (max-width: 900px) {
+    .toc {
+      display: none;
+    }
+  }
+</style>

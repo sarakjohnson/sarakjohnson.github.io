@@ -1,0 +1,138 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const nav = [
+  { href: '/work/', label: 'Work' },
+  { href: '/engineering/', label: 'Engineering' },
+  { href: '/about/', label: 'About' },
+  { href: '/resume/', label: 'Résumé' },
+];
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<aside class="rail">
+  <div class="rail-inner">
+    <a href="/" class="wordmark">
+      <span class="wordmark-name">Sara Johnson</span>
+      <span class="meta wordmark-role">Technical PM</span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <slot name="rail-extra" />
+
+    <div class="rail-foot">
+      <ThemeToggle />
+    </div>
+  </div>
+</aside>
+
+<style>
+  .rail {
+    grid-area: rail;
+  }
+
+  .rail-inner {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 3.5rem 0 2rem;
+  }
+
+  .wordmark {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    text-decoration: none;
+  }
+
+  .wordmark-name {
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .wordmark-role {
+    color: var(--text-muted);
+  }
+
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  nav li {
+    margin: 0;
+  }
+
+  nav a {
+    font-size: var(--size-small);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 120ms ease;
+  }
+
+  nav a:hover {
+    color: var(--text);
+  }
+
+  /* Current page gets the accent rule, the one place color earns its keep. */
+  nav a[aria-current='page'] {
+    color: var(--text);
+    box-shadow: -0.75rem 0 0 -0.6875rem var(--accent);
+  }
+
+  .rail-foot {
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .rail-inner {
+      position: static;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      padding: 1.5rem 0 1.25rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .wordmark {
+      margin-right: auto;
+    }
+
+    nav ul {
+      flex-direction: row;
+      gap: 1.1rem;
+    }
+
+    nav a[aria-current='page'] {
+      box-shadow: 0 0.35rem 0 -0.3125rem var(--accent);
+    }
+
+    .rail-foot {
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+</style>

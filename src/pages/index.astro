@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import WorkList from '../components/WorkList.astro';
+
+const entries = (await getCollection('work', ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+
+<Base
+  title="Sara Johnson — Technical Product Manager"
+  description="Technical product manager with eleven years as a working developer."
+>
+  <header class="intro">
+    <h1>Product manager who spent eleven years writing the code first.</h1>
+    <p class="lede">
+      A one-paragraph positioning statement: the kind of product problems you take on, the stage of
+      company you do it at, and what the engineering background actually buys the team.
+    </p>
+  </header>
+
+  <section class="section" aria-labelledby="work-heading">
+    <div class="section-head">
+      <span class="meta">01</span>
+      <h2 id="work-heading">Selected work</h2>
+    </div>
+    <WorkList entries={entries} />
+    <p class="more"><a href="/work/">All work →</a></p>
+  </section>
+
+  <section class="section" aria-labelledby="eng-heading">
+    <div class="section-head">
+      <span class="meta">02</span>
+      <h2 id="eng-heading">Before product</h2>
+    </div>
+    <p>
+      The thesis paragraph: why eleven years of shipping code makes you a better product manager, in
+      concrete terms rather than as a credential.
+    </p>
+    <p><a href="/engineering/">What the engineering years bought →</a></p>
+  </section>
+
+  <section class="section" aria-labelledby="contact-heading">
+    <div class="section-head">
+      <span class="meta">03</span>
+      <h2 id="contact-heading">Contact</h2>
+    </div>
+    <p>Where to reach you, and what you're currently looking for.</p>
+  </section>
+</Base>
+
+<style>
+  .intro {
+    max-width: var(--measure);
+    margin-bottom: var(--section-gap);
+  }
+
+  .intro h1 {
+    margin-bottom: 1.25rem;
+  }
+
+  .section {
+    margin-bottom: var(--section-gap);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .more {
+    margin-top: 1.5rem;
+    font-size: var(--size-small);
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About — Sara Johnson" description="Background, and how I work with engineering teams.">
+  <header class="head">
+    <h1>About</h1>
+    <p class="lede">
+      Placeholder — written in Phase 4. Short, first-person, and specific about how you work rather
+      than what you value.
+    </p>
+  </header>
+
+  <div class="prose">
+    <h2>How I work</h2>
+    <p>Concrete working habits, stated as things you do rather than as adjectives.</p>
+
+    <h2>What I'm looking for</h2>
+    <p>Stage, domain, and team shape — the filter that saves everyone time.</p>
+  </div>
+</Base>
+
+<style>
+  .head {
+    max-width: var(--measure);
+  }
+
+  .head h1 {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose {
+    margin-top: var(--section-gap);
+  }
+</style>

@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import WorkList from '../../components/WorkList.astro';
+
+const entries = (await getCollection('work', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+// Grouped rather than interleaved: which hat I wore is part of the record,
+// and product-owned work should lead without the engineering work being hidden.
+const groups = [
+  {
+    id: 'product',
+    heading: 'As product manager',
+    blurb: 'Work where I owned discovery, prioritization, and the call.',
+    entries: entries.filter((e) => e.data.roleType === 'product'),
+  },
+  {
+    id: 'engineering',
+    heading: 'As engineer',
+    blurb:
+      'Work I built rather than owned — included because the product decisions were mine even when the title was not.',
+    entries: entries.filter((e) => e.data.roleType === 'engineering'),
+  },
+].filter((g) => g.entries.length > 0);
+---
+
+<Base
+  title="Work — Sara Johnson"
+  description="Product case studies: the problem, the constraints, the decisions, and what shipped."
+>
+  <header class="head">
+    <h1>Work</h1>
+    <p class="lede">
+      Case studies in depth rather than a list of everything. Each one covers the business problem,
+      the constraints that shaped the decision, what shipped, and what it changed.
+    </p>
+  </header>
+
+  {
+    groups.map((group, i) => (
+      <section class="group" aria-labelledby={`${group.id}-heading`}>
+        <div class="section-head">
+          <span class="meta">{String(i + 1).padStart(2, '0')}</span>
+          <h2 id={`${group.id}-heading`}>{group.heading}</h2>
+        </div>
+        <p class="group-blurb">{group.blurb}</p>
+        <WorkList entries={group.entries} />
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .head {
+    max-width: var(--measure);
+    margin-bottom: var(--section-gap);
+  }
+
+  .head h1 {
+    margin-bottom: 1.25rem;
+  }
+
+  .group {
+    margin-bottom: var(--section-gap);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .group-blurb {
+    font-size: var(--size-small);
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+</style>

@@ -1,0 +1,64 @@
+/* Design tokens.
+   Light is the default; dark is applied via [data-theme="dark"] on <html>,
+   which the inline script in Base.astro sets before first paint. */
+
+:root {
+  /* Type. Sans carries prose, mono carries every piece of metadata —
+     that contrast is the core of the design, so the two stacks stay distinct. */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --size-meta: 0.75rem;
+  --size-small: 0.875rem;
+  --size-body: 1.0625rem;
+  --size-h3: 1.125rem;
+  --size-h2: clamp(1.375rem, 1.2rem + 0.8vw, 1.625rem);
+  --size-h1: clamp(1.875rem, 1.5rem + 1.8vw, 2.625rem);
+
+  --leading-prose: 1.7;
+  --leading-tight: 1.25;
+
+  /* Layout */
+  --rail-w: 13rem;
+  --measure: 68ch;
+  --gap: 1rem;
+  --section-gap: 3.5rem;
+
+  /* Color — light */
+  --bg: #fcfcfa;
+  --bg-subtle: #f3f3ef;
+  --text: #17171a;
+  --text-secondary: #56565e;
+  --text-muted: #85858e;
+  --rule: rgba(0, 0, 0, 0.11);
+  --rule-strong: rgba(0, 0, 0, 0.24);
+  --accent: #9a3d12;
+  --focus: #1f6feb;
+}
+
+:root[data-theme='dark'] {
+  --bg: #0d0d0f;
+  --bg-subtle: #17171a;
+  --text: #ececea;
+  --text-secondary: #a2a2aa;
+  --text-muted: #71717b;
+  --rule: rgba(255, 255, 255, 0.13);
+  --rule-strong: rgba(255, 255, 255, 0.26);
+  --accent: #e5885e;
+  --focus: #6aa3ff;
+}
+
+/* Users who never touch the toggle follow their OS. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0d0d0f;
+    --bg-subtle: #17171a;
+    --text: #ececea;
+    --text-secondary: #a2a2aa;
+    --text-muted: #71717b;
+    --rule: rgba(255, 255, 255, 0.13);
+    --rule-strong: rgba(255, 255, 255, 0.26);
+    --accent: #e5885e;
+    --focus: #6aa3ff;
+  }
+}

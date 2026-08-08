@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Engineering — Sara Johnson"
+  description="Eleven years shipping code, and what it changed about how I do product."
+>
+  <header class="head">
+    <h1>Before product</h1>
+    <p class="lede">
+      Placeholder — written in Phase 4. This page makes the argument for why eleven years of
+      shipping code makes you a better product manager, in concrete terms rather than as a
+      credential.
+    </p>
+  </header>
+
+  <div class="prose">
+    <h2>What I built</h2>
+    <p>The systems, languages, and scale — enough for an engineer reading this to place you.</p>
+
+    <h2>What it changed</h2>
+    <p>
+      The argument itself: reading the codebase before writing the spec, estimating without a
+      translation layer, knowing which "impossible" is real and which is a preference.
+    </p>
+
+    <h2>What I still do</h2>
+    <p>Whether you still write code, and where that line sits now.</p>
+  </div>
+</Base>
+
+<style>
+  .head {
+    max-width: var(--measure);
+  }
+
+  .head h1 {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose {
+    margin-top: var(--section-gap);
+  }
+</style>
