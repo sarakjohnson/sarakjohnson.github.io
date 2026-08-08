@@ -50,13 +50,11 @@ A prospect could read it and learn that `POST /employee` existed without learnin
 what a working employee-sync integration looked like, which calls it required, or
 in what order. Nobody could get from the reference to a plan.
 
-The cost showed up in three places. New API ARR was zero through the first half of
-2025, and what closed in the second half was small enough to round to nothing
-against five years of engineering investment. Every customer who began API
-development generated a run of support tickets, and because no internal resource
-existed to answer them, they escalated straight to tier four engineering — the most
-expensive people in the building. And internally, the teams who needed to sell the
-thing had nothing to learn from.
+Beyond the lost deals, the cost showed up in two places. Every customer who began
+API development generated a run of support tickets, and because no internal
+resource existed to answer them, they escalated straight to tier four engineering —
+the most expensive people in the building. And internally, the teams who needed to
+sell the thing had nothing to learn from.
 
 > It looked like a documentation gap. It was a product gap. The docs were
 > organized around our endpoints, and every buyer was thinking in integration
