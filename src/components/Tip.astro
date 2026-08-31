@@ -1,0 +1,82 @@
+---
+// Inline enrichment. The sentence must read completely without this: the tooltip
+// carries evidence (where, when, what stack, what number), never argument.
+// Touch devices get no hover, so nothing load-bearing goes in here.
+interface Props {
+  note: string;
+}
+
+const { note } = Astro.props;
+const id = `tip-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<span class="tip-wrap">
+  <button type="button" class="tip" aria-describedby={id}>
+    <slot />
+  </button>
+  <span class="tip-body" id={id} role="tooltip">{note}</span>
+</span>
+
+<style>
+  .tip-wrap {
+    position: relative;
+    display: inline;
+  }
+
+  .tip {
+    display: inline;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: help;
+    border-bottom: 1px dotted var(--rule-strong);
+    transition: border-color 120ms ease;
+  }
+
+  .tip:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  .tip-body {
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 0;
+    width: max-content;
+    max-width: min(20rem, 60vw);
+    padding: 0.7rem 0.85rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--rule-strong);
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: var(--size-meta);
+    line-height: 1.6;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text-secondary);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 120ms ease;
+    z-index: 10;
+  }
+
+  .tip:hover + .tip-body,
+  .tip:focus-visible + .tip-body {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* No hover on touch, and the trigger should not look interactive there. */
+  @media (hover: none) {
+    .tip {
+      border-bottom: 0;
+      cursor: auto;
+    }
+
+    .tip-body {
+      display: none;
+    }
+  }
+</style>

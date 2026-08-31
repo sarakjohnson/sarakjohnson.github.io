@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Tip from '../components/Tip.astro';
 
 const timeline = [
   {
@@ -48,12 +49,19 @@ const timeline = [
     </p>
 
     <p>
-      At Aon Hewitt I converted client data into production-ready health exchange systems on a
-      deadline. At Charter Software, I developed new direct-to-manufacturer integrations to get customer
-      inventory into our system instantly and effortlessly.
-      At Nymbl I obsessively measured and tweaked an onboarding funnel to statistically proven
-      perfection. Now, at AbsenceSoft I own onboarding for a platform whose customers arrive carrying
-      years of data from the system they are leaving.
+      I've converted unstructured client data into <Tip
+        note="Aon Hewitt, 2013—2020. Large-employer health exchanges, built alongside actuaries and business analysts. JCL, SAS, SQL, ASP.NET, and business-critical batch on a mainframe."
+        >production-ready health exchange systems</Tip
+      >, on deadline. I've built <Tip
+        note="Charter Software, 2020—2023. Integrations with John Deere, Polaris, and Kubota for ASPEN, Charter's dealer management platform. .NET Core."
+        >direct-to-manufacturer integrations</Tip
+      > that landed dealer inventory instantly. I've measured and tweaked <Tip
+        note="Nymbl Science, 2023—2024. Balance training for adults over 55. Fivetran, dbt, and Snowflake behind the funnel analysis. Retention doubled."
+        >onboarding funnels</Tip
+      > to statistically proven ideals. Now, I own <Tip
+        note="AbsenceSoft, 2024—present. 340 API endpoints documented, and a median time to first file load cut from 41 days to 14."
+        >onboarding and integration</Tip
+      > for customers who arrive carrying years of data from the system they're leaving.
     </p>
     <p>
       Data integration is my bread and time-to-value is
