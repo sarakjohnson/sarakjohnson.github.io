@@ -10,13 +10,16 @@ const entries = (await getCollection('work', ({ data }) => !data.draft))
 
 <Base
   title="Sara Johnson — Senior Technical Product Manager"
-  description="Senior technical product manager with eleven years as a working developer."
+  description="Senior technical product manager. Customer onboarding, data migration, APIs and developer experience. Thirteen years in software, eleven of them writing production code."
 >
   <header class="intro">
-    <h1>Product manager who spent eleven years writing the code first.</h1>
+    <h1>I own customer onboarding end to end.</h1>
     <p class="lede">
-      A one-paragraph positioning statement: the kind of product problems you take on, the stage of
-      company you do it at, and what the engineering background actually buys the team.
+      The data pipelines that convert and validate customer files, the internal tooling a
+      professional services team runs on, and the self-service surfaces that eventually replace
+      both. Thirteen years in software, eleven of them writing production code before I moved into
+      product. I build the pilot myself when that's the fastest way to find out whether an idea
+      works.
     </p>
   </header>
 
@@ -32,11 +35,13 @@ const entries = (await getCollection('work', ({ data }) => !data.draft))
   <section class="section" aria-labelledby="eng-heading">
     <div class="section-head">
       <span class="meta">02</span>
-      <h2 id="eng-heading">Before product</h2>
+      <h2 id="eng-heading">The engineering years</h2>
     </div>
     <p>
-      The thesis paragraph: why eleven years of shipping code makes you a better product manager, in
-      concrete terms rather than as a credential.
+      Six and a half years at Aon Hewitt converting client data into production-ready systems on
+      deadline. Three at Charter Software building dealer-management integrations. Sixteen months
+      at Nymbl shipping a 0→1 health feature. The problem I own now is the one I spent eleven years
+      solving from the other side of it.
     </p>
     <p><a href="/engineering/">What the engineering years bought →</a></p>
   </section>
@@ -46,7 +51,12 @@ const entries = (await getCollection('work', ({ data }) => !data.draft))
       <span class="meta">03</span>
       <h2 id="contact-heading">Contact</h2>
     </div>
-    <p>Where to reach you, and what you're currently looking for.</p>
+    <p>
+      <a href="mailto:sarapriceprogrammer@gmail.com">sarapriceprogrammer@gmail.com</a> ·
+      <a href="https://www.linkedin.com/in/programmer-sara/">LinkedIn</a> ·
+      <a href="https://github.com/sarakjohnson">GitHub</a>
+    </p>
+    <p class="looking">TODO — one line on what you're looking for right now.</p>
   </section>
 </Base>
 
@@ -76,5 +86,9 @@ const entries = (await getCollection('work', ({ data }) => !data.draft))
   .more {
     margin-top: 1.5rem;
     font-size: var(--size-small);
+  }
+
+  .looking {
+    color: var(--text-muted);
   }
 </style>

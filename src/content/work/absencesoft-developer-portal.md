@@ -33,10 +33,11 @@ them, and a Swagger spec that described every one.
 It had eight active customers.
 
 Sales and implementation couldn't speak to API functionality in any depth, so the
-answer to "can we integrate?" defaulted to flat-file feeds on a daily sync. That
-answer lost us deals. The customers we were losing were the API-first ones — buyers
-whose engineering organizations had to sign off on the choice, and who needed
-something more than a flat file to justify it.
+answer to "can we integrate?" defaulted to flat-file feeds — weekly in practice,
+daily if we proposed our best cadence. That answer lost us deals. The customers we
+were losing were the API-first ones — buyers whose engineering organizations had to
+sign off on the choice, and who needed something more than a nightly batch to
+justify it.
 
 ## Problem
 

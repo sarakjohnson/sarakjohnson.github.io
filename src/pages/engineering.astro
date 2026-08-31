@@ -1,32 +1,137 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const timeline = [
+  {
+    years: '2013—2020',
+    org: 'Aon Hewitt',
+    title: 'Programmer Analyst → Programmer Analyst Advanced',
+    stack: ['ASP.NET', 'SQL', 'JCL', 'SAS', 'mainframe'],
+    note: 'Custom tooling for large-employer health exchanges, built alongside actuaries and business analysts. Converting client data into a configured, production-ready system against a deadline — business-critical batch processing, legacy calculations moved onto scalable platforms, and the regression coverage to prove they still agreed.',
+  },
+  {
+    years: '2020—2023',
+    org: 'Charter Software',
+    title: 'Software Engineer / Process Owner',
+    stack: ['.NET Core', 'REST', 'integrations'],
+    note: 'Modernized services and built new integrations for ASPEN, Charter’s dealer management platform — CRM and ERP for agriculture and power-sports dealers, covering a specialty retail vertical the general-purpose platforms never served. Created and led the production support process, including triage and escalation.',
+  },
+  {
+    years: '2023—2024',
+    org: 'Nymbl Science',
+    title: 'Software Engineer',
+    stack: ['Xamarin/.NET MAUI', 'EF Core', 'Fivetran', 'dbt', 'Snowflake'],
+    note: 'Full-stack work on a health startup, plus the technical program management nobody else held. Shipped a 0→1 women’s health feature and maintained the ETL pipeline that made onboarding funnel analysis possible in the first place.',
+  },
+];
 ---
 
 <Base
   title="Engineering — Sara Johnson"
-  description="Eleven years shipping code, and what it changed about how I do product."
+  description="Eleven years writing production code, and what it changed about how I do product."
 >
   <header class="head">
-    <h1>Before product</h1>
+    <h1>Eleven years writing the code</h1>
     <p class="lede">
-      Placeholder — written in Phase 4. This page makes the argument for why eleven years of
-      shipping code makes you a better product manager, in concrete terms rather than as a
-      credential.
+      Product managers with engineering backgrounds all claim the same thing: that they speak the
+      language. The claim is free, so it is worth nothing. What follows is the specific version —
+      what I built, and the decisions it lets me make that I could not otherwise make.
     </p>
   </header>
 
   <div class="prose">
-    <h2>What I built</h2>
-    <p>The systems, languages, and scale — enough for an engineer reading this to place you.</p>
+    <h2>It is not a career change</h2>
 
-    <h2>What it changed</h2>
     <p>
-      The argument itself: reading the codebase before writing the spec, estimating without a
-      translation layer, knowing which "impossible" is real and which is a preference.
+      The tidy version of my story is engineer becomes product manager. The accurate version is
+      that I have spent thirteen years on one problem.
     </p>
 
-    <h2>What I still do</h2>
-    <p>Whether you still write code, and where that line sits now.</p>
+    <p>
+      At Aon Hewitt I converted client data into production-ready health exchange systems on a
+      deadline. At AbsenceSoft I own onboarding for a platform whose customers arrive carrying
+      years of data from the system they are leaving. Same problem. The first eleven years I solved
+      it by writing the code; now I solve it by deciding what gets built. The move into product
+      changed my leverage, not my subject.
+    </p>
+
+    <h2>What it actually buys</h2>
+
+    <h3>I read the code, not the documentation</h3>
+
+    <p>
+      When I built the knowledge base for our onboarding agent, I sourced it from downstream code
+      behavior rather than from our own docs. The documentation described what we meant. The code
+      described what would actually happen. Those are different, and the gap between them is where
+      onboarding failures live.
+    </p>
+
+    <h3>I can write a spec precise enough to build from</h3>
+
+    <p>
+      Translating five years of loose Swagger into strict OpenAPI meant deciding whether a payload
+      was <code>allOf</code> or <code>anyOf</code>, and whether a field was an integer or an
+      enumerated integer. Those look like formatting questions and are not: they change what the
+      spec promises a consumer, and a wrong guess produces confident, incorrect client code in
+      someone else's repository. I made those calls directly instead of routing each one to an
+      engineer. They became the company's standard for API linting.
+    </p>
+
+    <h3>I build the pilot when the argument stalls</h3>
+
+    <p>
+      Our agentic import tool sat parked in ideation for 2027, behind committed roadmap work and a
+      hard resourcing limit, with very little proof of feasibility. Waiting for certainty meant
+      waiting a year. So I built the pilot — the agent loop, the validation and dry-run APIs, and
+      the privacy gates that had to come first, because the data is PII and PHI and what reaches a
+      probabilistic evaluation needs to be deterministically bounded.
+    </p>
+
+    <p>
+      Watching it run taught us something I would not have reasoned my way to in a document: some
+      mapping steps were being handled identically every single time, which meant they were rules
+      and did not need a model at all. We moved those into deterministic processing and left the
+      agent only the ambiguous decisions. That became the team's pattern for agentic work.
+    </p>
+
+    <h2>Where it leads me wrong</h2>
+
+    <p class="todo">
+      TODO — the honest counterweight. A time the engineering instinct made me a worse product
+      manager: over-indexing on elegance, solving it myself when the team should have owned it, or
+      anchoring the room on my own estimate. Without this section the page is a sales pitch.
+    </p>
+
+    <h2>Where the line is now</h2>
+
+    <p class="todo">
+      TODO — do I still write code, read PRs, prototype? What do I deliberately not do anymore, and
+      how do I keep from stepping on my engineers? Also: why product, and what triggered the move.
+    </p>
+
+    <h2>The record</h2>
+
+    <ol class="timeline">
+      {
+        timeline.map((item) => (
+          <li>
+            <div class="tl-head">
+              <span class="meta tl-years">{item.years}</span>
+              <div>
+                <p class="tl-org">{item.org}</p>
+                <p class="meta tl-title">{item.title}</p>
+              </div>
+            </div>
+            <p class="tl-note">{item.note}</p>
+            <div class="tl-stack">
+              {item.stack.map((s) => (
+                <span class="chip">{s}</span>
+              ))}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
   </div>
 </Base>
 
@@ -41,5 +146,72 @@ import Base from '../layouts/Base.astro';
 
   .prose {
     margin-top: var(--section-gap);
+  }
+
+  .todo {
+    color: var(--text-muted);
+    border-left: 2px solid var(--rule-strong);
+    padding-left: 1.25rem;
+    border-radius: 0;
+  }
+
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: none;
+  }
+
+  .timeline li {
+    margin: 0;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tl-head {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+    margin-bottom: 0.75rem;
+  }
+
+  .tl-org {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .tl-title {
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  .tl-note {
+    margin: 0 0 0.75rem;
+    font-size: var(--size-small);
+    color: var(--text-secondary);
+  }
+
+  .tl-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: var(--size-meta);
+    color: var(--text-secondary);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.1rem 0.4rem;
+  }
+
+  @media (max-width: 640px) {
+    .tl-head {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.25rem;
+    }
   }
 </style>
