@@ -56,7 +56,10 @@ const entries = (await getCollection('work', ({ data }) => !data.draft))
       <a href="https://www.linkedin.com/in/programmer-sara/">LinkedIn</a> ·
       <a href="https://github.com/sarakjohnson">GitHub</a>
     </p>
-    <p class="looking">TODO: one line on what you're looking for right now.</p>
+    <p class="looking">
+      I'm not job hunting, but I'll always make time to talk about applied AI in SaaS or the
+      integration problem space.
+    </p>
   </section>
 </Base>
 
@@ -89,6 +92,6 @@ const entries = (await getCollection('work', ({ data }) => !data.draft))
   }
 
   .looking {
-    color: var(--text-muted);
+    color: var(--text-secondary);
   }
 </style>
