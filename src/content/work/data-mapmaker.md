@@ -14,20 +14,15 @@ featured: true
 images:
   - src: ../../assets/data-mapmaker-upload.jpg
     alt: The Data Mapmaker upload step, headed "Map your HRIS export to AbsenceSoft", with a drop zone for a CSV, preset instruction chips for Workday, ADP and UKG defaults, and a Map my data button.
-    caption: >-
-      Step one of three. The preset chips exist because HRIS exports cluster by vendor,
-      and the footer states the two constraints the agent cannot be talked out of.
+    caption: The vendor presets exist because HRIS exports cluster by source system.
   - src: ../../assets/data-mapmaker-evals.jpg
     alt: The evaluation console listing cases E-01 through E-05, each with a detailed expected-behavior description, an automated-checks column, and an overridable verdict.
     caption: >-
-      The eval suite. Each case states what the agent must do, down to which rule it has
-      to name when it refuses, and the checks run as plain assertions rather than a second
-      model call.
+      Each case names the rule the agent has to cite when it refuses. The checks are plain
+      assertions, not a second model grading the first.
   - src: ../../assets/data-mapmaker-momentum.jpg
     alt: Sara Johnson on stage at the Momentum conference, with Data Mapmaker on the screens behind her showing an upload panel, a column mapping table with confidence levels, and a masked employee preview.
-    caption: >-
-      Demoing the pilot at Momentum. On screen: the upload step, the proposed column
-      mapping with a confidence on every row, and the employee preview.
+    caption: Demoing the pilot at Momentum, AbsenceSoft's customer conference.
 draft: false
 stack: [Claude, AWS Bedrock, Bedrock Guardrails, Python, JavaScript]
 metrics:
