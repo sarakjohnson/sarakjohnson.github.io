@@ -12,6 +12,17 @@ roleType: product
 order: 2
 featured: true
 images:
+  - src: ../../assets/data-mapmaker-upload.jpg
+    alt: The Data Mapmaker upload step, headed "Map your HRIS export to AbsenceSoft", with a drop zone for a CSV, preset instruction chips for Workday, ADP and UKG defaults, and a Map my data button.
+    caption: >-
+      Step one of three. The preset chips exist because HRIS exports cluster by vendor,
+      and the footer states the two constraints the agent cannot be talked out of.
+  - src: ../../assets/data-mapmaker-evals.jpg
+    alt: The evaluation console listing cases E-01 through E-05, each with a detailed expected-behavior description, an automated-checks column, and an overridable verdict.
+    caption: >-
+      The eval suite. Each case states what the agent must do, down to which rule it has
+      to name when it refuses, and the checks run as plain assertions rather than a second
+      model call.
   - src: ../../assets/data-mapmaker-momentum.jpg
     alt: Sara Johnson on stage at the Momentum conference, with Data Mapmaker on the screens behind her showing an upload panel, a column mapping table with confidence levels, and a masked employee preview.
     caption: >-
