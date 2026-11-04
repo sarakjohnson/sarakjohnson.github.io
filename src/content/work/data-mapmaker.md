@@ -11,6 +11,12 @@ oneLiner: >-
 roleType: product
 order: 2
 featured: true
+images:
+  - src: ../../assets/data-mapmaker-momentum.jpg
+    alt: Sara Johnson on stage at the Momentum conference, with Data Mapmaker on the screens behind her showing an upload panel, a column mapping table with confidence levels, and a masked employee preview.
+    caption: >-
+      Demoing the pilot at Momentum. On screen: the upload step, the proposed column
+      mapping with a confidence on every row, and the employee preview.
 draft: false
 stack: [Claude, AWS Bedrock, Bedrock Guardrails, Python, JavaScript]
 metrics:
