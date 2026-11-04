@@ -1,0 +1,297 @@
+---
+import Base from '../layouts/Base.astro';
+
+const experience = [
+  {
+    org: 'AbsenceSoft',
+    location: 'Denver, CO',
+    title: 'Senior Technical Product Manager',
+    period: 'Dec 2025—present',
+    prior: 'Technical Product Manager, Feb 2025—Dec 2025. Technical Product Owner, Jun 2024—Feb 2025.',
+    bullets: [
+      'Own enterprise API, integration, and onboarding products across developer surfaces, self-service UI, and internal tooling. Lead discovery, prioritization, instrumentation, success metrics, and post-launch measurement.',
+      "Shipped a public developer portal covering all 340 endpoints on authored OpenAPI 3, with Marketing, Professional Services, and Engineering. New API ARR run rate approximately doubled, with first-half 2026 nearly matching all of 2025. Enabled the company's first self-serve API stories.",
+      "Established spec-first API design, authored the SOP, and set the company's API linting standard. Designed a CI flow that publishes specs in sync with the code implementation and monitors for drift.",
+      // METRIC CONFLICT: the tailored resume says "time to value 96 days to 20"; the
+      // published case study says 34 days to under seven from the first technical call.
+      // Using the site's figure so the two do not contradict. Reconcile with Sara.
+      'Built and launched Data Mapmaker, an agentic onboarding tool for customer data imports, and drove it to pilot personally: agent loop, validation and dry-run APIs, evaluation suite, and production monitoring. Cut time from first technical call to first file load from 34 days to under seven for pilot customers. Designed privacy gates that kept PII and PHI out of model ingestion.',
+      "Built the company's first dashboards for SSO activity, inbound file feeds, and API usage. Cut average customer configuration time by 80%, from 10 days to 2, within one quarter, through a new onboarding model and a self-service configuration UI.",
+      'Delivered multi-tenant administration tooling and automated configuration promotion between staging and production, removing recurring manual work from every release.',
+    ],
+  },
+  {
+    org: 'Nymbl Science',
+    location: 'Denver, CO',
+    title: 'Software Engineer',
+    period: 'Feb 2023—Jun 2024',
+    bullets: [
+      'Built and launched a 0-to-1 women’s health feature with Clinical, Analytics, and Product. Ran thousands of monitored A/B test sessions; when early engagement lagged, revisited the design assumptions and reworked onboarding, doubling funnel output within a few months.',
+      'Built mobile UI and backend functionality in Xamarin/.NET MAUI, .NET Core, and EF Core, and maintained a Fivetran, dbt, and Snowflake pipeline for onboarding-funnel analysis.',
+      'Acted as technical program manager in the absence of a dedicated role, defining technical requirements with stakeholders and sequencing delivery by dependency and priority.',
+    ],
+  },
+  {
+    org: 'Charter Software',
+    location: 'Littleton, CO',
+    title: 'Software Engineer / Process Owner',
+    period: 'Jan 2020—Feb 2023',
+    bullets: [
+      'Modernized services and built .NET Core integrations for ASPEN, a CRM and ERP dealer management platform for agriculture and power-sports dealers. Defined integration success criteria with product leadership, set the technical requirements, and sequenced delivery.',
+      'Created and led the production-support process, establishing triage and escalation protocols.',
+    ],
+  },
+  {
+    org: 'Aon Hewitt',
+    location: 'Orlando, FL',
+    title: 'Programmer Analyst Advanced',
+    period: 'Feb 2017—Jan 2020',
+    prior: 'Programmer Analyst, Aug 2013—Feb 2017.',
+    bullets: [
+      'Built and modernized ASP.NET applications, batch processes, and JCL, SAS, and SQL components for large-employer Health and Welfare implementations, working alongside actuaries and business analysts.',
+      'Strengthened test and regression coverage, and trained new analysts.',
+    ],
+  },
+];
+
+const skills = [
+  {
+    label: 'AI',
+    items:
+      'Agentic product development, evaluation-suite design, production monitoring, privacy gates for PII and PHI. Claude Code daily, including authoring skills for recurring workflows. Prototyping in Lovable and v0.',
+  },
+  {
+    label: 'Product',
+    items:
+      'Developer experience, API product strategy, spec-first API design, customer onboarding and implementation, data migration, A/B testing, usage telemetry, funnel analytics, success metrics, discovery, roadmaps, enterprise SaaS.',
+  },
+  {
+    label: 'Technical',
+    items:
+      'REST, OpenAPI 3, Stoplight, SQL, DataDog, SSO (SAML 2.0 and OIDC), C#/.NET and .NET Core, Node.js, React, Angular, MongoDB, Fivetran, dbt, Snowflake, AWS, Azure, Terraform.',
+  },
+];
+
+const credentials = [
+  ['2026', 'Certified AI Product Manager, Product Faculty'],
+  ['2025', 'AbsenceSoft Employee MVP, “Elevate” Award'],
+  ['2024', 'Certified Scrum Product Owner, Scrum Alliance'],
+  ['2013', 'University of Central Florida, BA Digital Media: Visual Language. Magna Cum Laude, University Honors, Pegasus Gold Scholar'],
+];
+---
+
+<Base
+  title="Résumé · Sara Johnson"
+  description="Senior technical product manager and former full-stack engineer. Thirteen years in software, eleven writing production code."
+>
+  <header class="head">
+    <h1>Résumé</h1>
+    <p class="lede">
+      Senior technical product manager and former full-stack engineer. Thirteen years in software,
+      roughly eleven of them writing production code. I own developer-facing API and onboarding
+      products from discovery through launch and telemetry, and I build my own pilots.
+    </p>
+    <p class="meta contact">
+      Aurora, CO · <a href="mailto:sarapriceprogrammer@gmail.com">sarapriceprogrammer@gmail.com</a> ·
+      <a href="https://www.linkedin.com/in/programmer-sara/">linkedin.com/in/programmer-sara</a>
+    </p>
+  </header>
+
+  <section class="block" aria-labelledby="exp-heading">
+    <div class="section-head">
+      <span class="meta">01</span>
+      <h2 id="exp-heading">Experience</h2>
+    </div>
+
+    {
+      experience.map((job) => (
+        <article class="job">
+          <div class="job-head">
+            <span class="meta job-period">{job.period}</span>
+            <div>
+              <p class="job-org">
+                {job.org} <span class="job-loc">{job.location}</span>
+              </p>
+              <p class="meta job-title">{job.title}</p>
+              {job.prior && <p class="job-prior">{job.prior}</p>}
+            </div>
+          </div>
+          <ul>
+            {job.bullets.map((b) => (
+              <li>{b}</li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </section>
+
+  <section class="block" aria-labelledby="skills-heading">
+    <div class="section-head">
+      <span class="meta">02</span>
+      <h2 id="skills-heading">Skills</h2>
+    </div>
+    <dl class="skills">
+      {
+        skills.map((s) => (
+          <div class="skill-row">
+            <dt class="meta">{s.label}</dt>
+            <dd>{s.items}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="block" aria-labelledby="cred-heading">
+    <div class="section-head">
+      <span class="meta">03</span>
+      <h2 id="cred-heading">Education and credentials</h2>
+    </div>
+    <dl class="skills">
+      {
+        credentials.map(([year, what]) => (
+          <div class="skill-row">
+            <dt class="meta">{year}</dt>
+            <dd>{what}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+</Base>
+
+<style>
+  .head {
+    max-width: var(--measure);
+  }
+
+  .head h1 {
+    margin-bottom: 1.25rem;
+  }
+
+  .contact {
+    margin-top: 1rem;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  .block {
+    margin-bottom: var(--section-gap);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .job {
+    padding: 0 0 1.75rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .job:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .job-head {
+    display: grid;
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+    margin-bottom: 0.9rem;
+  }
+
+  .job-org {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .job-loc {
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .job-title {
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  .job-prior {
+    margin: 0.3rem 0 0;
+    font-size: var(--size-meta);
+    color: var(--text-muted);
+  }
+
+  .job ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    max-width: var(--measure);
+  }
+
+  .job li {
+    font-size: var(--size-small);
+    margin-bottom: 0.5rem;
+  }
+
+  .skills {
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .skill-row {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  .skill-row dt {
+    margin: 0;
+  }
+
+  .skill-row dd {
+    margin: 0;
+    font-size: var(--size-small);
+    max-width: var(--measure);
+  }
+
+  @media (max-width: 640px) {
+    .job-head,
+    .skill-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.25rem;
+    }
+  }
+
+  /* Cmd-P is the PDF. Drop the chrome, tighten the rhythm, keep it to one column. */
+  @media print {
+    .section-head {
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+    }
+
+    .job {
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      break-inside: avoid;
+    }
+
+    .job li {
+      margin-bottom: 0.25rem;
+    }
+
+    .block {
+      margin-bottom: 1.5rem;
+      break-inside: avoid;
+    }
+  }
+</style>
