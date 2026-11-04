@@ -93,7 +93,17 @@ const spec = [
             {d.images.map((img) => (
               <figure class="shot">
                 <Image src={img.src} alt={img.alt} widths={[640, 960, 1280]} sizes="(max-width: 900px) 100vw, 640px" />
-                {img.caption && <figcaption class="meta">{img.caption}</figcaption>}
+                {(img.caption || img.link) && (
+                  <figcaption class="meta">
+                    {img.caption}
+                    {img.link && (
+                      <>
+                        {' '}
+                        <a href={img.link.href}>{img.link.label}</a>
+                      </>
+                    )}
+                  </figcaption>
+                )}
               </figure>
             ))}
           </>

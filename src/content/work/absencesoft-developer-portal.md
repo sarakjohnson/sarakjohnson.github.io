@@ -11,15 +11,12 @@ roleType: product
 order: 1
 featured: true
 images:
-  - src: ../../assets/stoplight-use-cases.jpg
-    alt: The Common Use Cases section of the AbsenceSoft developer portal, showing an HRIS Synchronization tab with a "What You Can Do" list beside the key endpoints that serve it.
-    caption: >-
-      The reorganization, made visible. Integration scenarios first, with the endpoints
-      that serve them alongside, rather than an alphabetical endpoint reference.
   - src: ../../assets/stoplight-portal-welcome.jpg
     alt: The welcome page of the AbsenceSoft developer portal on Stoplight, with a left navigation of documentation and API sections and a right-hand table of contents.
-    caption: >-
-      The portal is public. Read it at absencesoft.stoplight.io.
+    caption: The portal is public.
+    link:
+      href: https://absencesoft.stoplight.io/docs/api-specs/46b38f624d360-welcome-to-the-absence-soft-api
+      label: Read it at absencesoft.stoplight.io
 draft: false
 stack: [OpenAPI 3, Stoplight, Swagger, REST, YAML]
 metrics:

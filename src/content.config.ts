@@ -41,6 +41,9 @@ const work = defineCollection({
             src: image(),
             alt: z.string(),
             caption: z.string().optional(),
+            link: z
+              .object({ href: z.string().url(), label: z.string() })
+              .optional(),
           }),
         )
         .optional(),
