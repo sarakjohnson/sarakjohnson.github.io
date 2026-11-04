@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="About · Sara Johnson"
+  description="A design degree, a mainframe, and a laser cutter. How Sara Johnson got here and how she works."
+>
+  <header class="head">
+    <h1>About</h1>
+    <p class="lede">
+      I got into software sideways, learned the unglamorous parts first, and have been getting
+      useful in unfamiliar systems ever since.
+    </p>
+  </header>
+
+  <div class="prose">
+    <h2>Half art, half code</h2>
+
+    <p>
+      My degree is in Digital Media: Visual Language, which sounds unrelated to software until you
+      notice that 3D animation is half art and half code. I came out of it writing HTML, CSS,
+      JavaScript, ActionScript 3, Processing, and eventually Python.
+    </p>
+
+    <p>
+      Then I started at Aon Hewitt, where none of that mattered. Nobody teaches JCL or SQL for IBM
+      DB2 in a design program, and the job needed both, so I learned them from the ground up. When I
+      moved up a few years later I moved onto a modern stack at the same time, and taught myself C#
+      and ASP.NET MVC by trial and fire.
+    </p>
+
+    <p>
+      That's the pattern, and it showed up before I had a name for it. What I'm good at isn't
+      knowing a particular stack. It's getting useful in one I've never seen.
+    </p>
+
+    <h2>How I work</h2>
+
+    <p>Rather than describe myself, here's what engineers who've worked with me say:</p>
+
+    <blockquote>
+      <p>She uses the code as documentation.</p>
+      <p>She checks in with us as humans.</p>
+      <p>She always wants to dive into the details.</p>
+    </blockquote>
+
+    <p>
+      The first one saves everybody time. The second one is what makes the third one tolerable.
+    </p>
+
+    <h2>Font &amp; Flame</h2>
+
+    <p>
+      I run a small business making vector designs for lasercraft and fabricating them for a growing
+      customer base. Nights and weekends, and I own all of it: financial planning, product launches,
+      customer service, the lot. You can see it at <a href="https://fontandflame.com"
+        >fontandflame.com</a
+      >.
+    </p>
+
+    <p>There's no safety net, which turns out to be an efficient teacher.</p>
+
+    <p>
+      Further back, three years selling video games on the floor at GameStop: point of sale,
+      inventory, trade-ins, and customers. More relevant than it sounds. It's operator-side
+      experience of the thing being sold, and I think about it whenever I'm designing for somebody
+      who has to use my product all day.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .head {
+    max-width: var(--measure);
+  }
+
+  .head h1 {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose {
+    margin-top: var(--section-gap);
+  }
+
+  /* The three quotes are a list of separate voices, not one passage. */
+  .prose blockquote p {
+    margin-bottom: 0.5rem;
+  }
+</style>
